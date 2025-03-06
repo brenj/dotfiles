@@ -9,6 +9,7 @@ Plug 'bling/vim-bufferline'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'lifepillar/vim-solarized8'
@@ -20,6 +21,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'voldikss/vim-floaterm'
 Plug 'puremourning/vimspector'
 Plug 'tommcdo/vim-fubitive'
+Plug 'zenbro/mirror.vim'
 call plug#end()
 
 colorscheme solarized8
@@ -45,19 +47,19 @@ set laststatus=2                        " enable status line
 set lazyredraw                          " only redraw when required
 set list                                " show special characters
 set listchars=tab:..                    " show tab character as .. when used
+set mouse=                              " disable mouse mode
 set nobackup                            " do not save backup files
 set noerrorbells                        " no beeping
 set noswapfile                          " do not create swap files
 set nowrap                              " do not wrap lines
-set number                              " show line numbers
-set pastetoggle=<F2>                    " toggle :set paste on
-set relativenumber                      " set number hybrid mode
+set number relativenumber               " set number hybrid mode
 set rtp+=/usr/local/opt/fzf             " enable fzf
 set shiftround                          " indent by mulitible of shiftwidth
 set shiftwidth=4                        " size of the indent is x spaces
 set showcmd                             " show info about the current command
 set showmatch                           " show matching parenthesis
 set showmode                            " show current mode
+set sidescroll=1
 set smartcase                           " ignore case when lowercase
 set smarttab                            " tabs are only used for indentation
 set softtabstop=4                       " simulate tabstop width != tabstop
@@ -67,6 +69,11 @@ set termguicolors                       " support millions of colors
 set ttyfast                             " scroll fast in terminal
 set undolevels=1000                     " increase undo history
 set visualbell t_vb=                    " no flashing
+
+" vim-only settings
+if !has('nvim')
+  set pastetoggle=<F2>                  " toggle :set paste on
+endif
 
 " }}} Options
 " Colors {{{
@@ -141,7 +148,7 @@ nnoremap <leader>py :FloatermNew ipython<cr>
 " Vim window splits
 nnoremap <leader><bar> <c-w>v
 nnoremap <leader>- <c-w>s
-nnoremap <leader>c <c-w>w
+noremap <leader>c <c-w>w
 nnoremap <leader>m <c-w>_<c-w><bar>
 nnoremap <leader>= <c-w>=
 
@@ -181,6 +188,9 @@ noremap E g_
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
 
+" Mirror
+map <F6> :MirrorPush<CR>
+
 " toggle folding with space
 " http://vim.wikia.com/wiki/Folding
 nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<space>")<cr>
@@ -200,6 +210,7 @@ inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " Ale
 let g:ale_fixers = {'python': ['black', 'isort']}
+" let g:ale_fixers = {}
 let g:ale_fix_on_save=1
 let g:ale_linters = {
     \ 'dockerfile': ['hadolint'],

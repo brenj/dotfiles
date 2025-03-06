@@ -18,9 +18,10 @@ alias gp='git pull origin'
 alias gs='git status'
 alias gu='git reset --soft HEAD~1'
 alias gz='git branch |fzf |xargs git checkout'
+alias ls='ls -lGHh'
 alias pb='pbcopy'
-alias vf="fzf -q '!.pyc ' |xargs -o vim"
-alias vs="fzf -q '!.pyc src/ ' |xargs -o vim"
+alias vf="fzf -q '!.pyc ' |xargs -o nvim"
+alias vs="fzf -q '!.pyc src/ ' |xargs -o nvim"
 
 # 3 character
 alias cat='bat -p --paging=never'

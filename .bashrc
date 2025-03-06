@@ -12,7 +12,7 @@ WHITE="\[\e[0m\]"
 
 PS1="\$?\[ ${GREEN}\u${WHITE}@${GREEN}\h${WHITE} \]${CYAN}\w${RED}\$(get_git_branch)${WHITE}\n\$> "
 
-EDITOR="vim"
+EDITOR="nvim"
 VISUAL="$EDITOR"
 HISTCONTROL=ignoreboth
 
