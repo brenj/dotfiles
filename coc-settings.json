@@ -7,5 +7,5 @@
     "pyright.testing.provider": "pytest",
     "python.analysis.typeCheckingMode": "off",
     "python.linting.enabled": false,
-    "python.pythonPath": "/Users/brenj/.pyenv/shims/python3",
+    "python.pythonPath": "/Users/brenj/.pyenv/versions/3.10.10/bin/python3"
 }
