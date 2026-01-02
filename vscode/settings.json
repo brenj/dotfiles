@@ -1,0 +1,40 @@
+{
+  "workbench.colorTheme": "Solarized Dark",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "files.autoSave": "afterDelay",
+  "files.encoding": "utf8",
+  "vscode-neovim.neovimInitVimPaths.darwin": "/Users/brenj/dotfiles/.vim/init.vim",
+
+  "editor.lineNumbers": "relative",
+  "editor.wordWrap": "off",
+  "editor.rulers": [81],
+  "editor.renderLineHighlight": "line",
+  "editor.glyphMargin": true,
+
+  "editor.insertSpaces": true,
+  "editor.tabSize": 4,
+  "editor.detectIndentation": false,
+
+  "editor.cursorSurroundingLines": 5,
+  "editor.cursorSurroundingLinesStyle": "all",
+  "editor.cursorSurroundingLinesStyleHorizontal": "all",
+
+  "editor.renderWhitespace": "all",
+  "editor.renderControlCharacters": true,
+  "editor.matchBrackets": "always",
+
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#839496"
+  },
+  "editor.selectionHighlight": false,
+  "editor.guides.indentation": false,
+  "telemetry.telemetryLevel": "off",
+
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.vertical": "hidden",
+"editor.scrollbar.horizontal": "hidden",
+"workbench.editor.revealIfOpen": true,
+"workbench.editor.enablePreview": false
+}

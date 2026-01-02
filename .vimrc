@@ -99,20 +99,20 @@ endif
 
 let mapleader=","
 
-" Global
-nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>e :e <c-r>=expand('%:p:h') . '/'<cr>
 inoremap <leader>i <esc>
-nnoremap <leader>q :q!<cr>
-nnoremap <leader>r :Rg <cr>
-nnoremap <leader>s :w<cr>
-nnoremap <leader>v :edit $MYVIMRC<cr>
-nnoremap <leader>x <c-w>x
-nnoremap <leader>y "*y"
-nnoremap <leader>z :wq!<cr>
 nnoremap <leader><space> :nohlsearch<cr>
 
 if !exists('g:vscode')
+  nnoremap <leader>b :Buffers<cr>
+  nnoremap <leader>q :q!<cr>
+  nnoremap <leader>r :Rg <cr>
+  nnoremap <leader>s :w<cr>
+  nnoremap <leader>v :edit $MYVIMRC<cr>
+  nnoremap <leader>x <c-w>x
+  nnoremap <leader>y "*y"
+  nnoremap <leader>z :wq!<cr>
+
   " Coc
   nnoremap <leader>cd <Plug>(coc-definition)
   nnoremap <leader>cr <Plug>(coc-references)
@@ -141,6 +141,16 @@ if !exists('g:vscode')
   nnoremap <leader>hn :GitGutterNextHunk<cr>
   nnoremap <leader>hp :GitGutterPrevHunk<cr>
   nnoremap <leader>hu :GitGutterUndoHunk<cr>
+else
+  " VS Code + Neovim
+  nnoremap <silent> <leader>b :call VSCodeNotify('workbench.action.quickOpen')<cr>
+  nnoremap <silent> <leader>q :call VSCodeNotify('workbench.action.closeActiveEditor')<cr>
+  nnoremap <silent> <leader>r :call VSCodeNotify('workbench.action.findInFiles')<cr>
+  nnoremap <silent> <leader>s :call VSCodeNotify('workbench.action.files.save')<cr>
+  nnoremap <silent> <leader>v :call VSCodeNotify('workbench.action.openSettingsJson')<cr>
+  nnoremap <silent> <leader>x :call VSCodeNotify('workbench.action.splitEditor')<cr>
+  nnoremap <silent> <leader>y :call VSCodeNotify('editor.action.clipboardCopyAction')<cr>
+  nnoremap <silent> <leader>z :call VSCodeNotify('workbench.action.closeActiveEditor')<cr>
 endif
 
 " Vim window splits
