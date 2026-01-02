@@ -1,90 +1,98 @@
 " Setup {{{
 
-set nocompatible
-
 call plug#begin('~/.vim/plugged')
-Plug 'cohama/lexima.vim'
-Plug 'SirVer/ultisnips'
-Plug 'bling/vim-bufferline'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
+Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
-Plug 'airblade/vim-gitgutter'
-Plug 'sheerun/vim-polyglot'
-Plug 'lifepillar/vim-solarized8'
-Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'dense-analysis/ale'
-Plug 'justinmk/vim-sneak'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'voldikss/vim-floaterm'
-Plug 'puremourning/vimspector'
-Plug 'tommcdo/vim-fubitive'
+Plug 'tpope/vim-surround'
 Plug 'zenbro/mirror.vim'
+
+if !exists('g:vscode')
+  Plug 'airblade/vim-gitgutter'
+  Plug 'cohama/lexima.vim'
+  Plug 'dense-analysis/ale'
+  Plug 'itchyny/lightline.vim'
+  Plug 'junegunn/fzf.vim'
+  Plug 'lifepillar/vim-solarized8'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'sheerun/vim-polyglot'
+  Plug 'SirVer/ultisnips'
+  Plug 'tpope/vim-fugitive'
+  Plug 'voldikss/vim-floaterm'
+endif
+
 call plug#end()
 
-colorscheme solarized8
+if !exists('g:vscode')
+  colorscheme solarized8
+endif
 
 " }}} Setup
 " Options {{{
 
 set autoindent                          " auto indenting is on
-set background=dark                     " set solarized scheme
-set colorcolumn=80                      " show line to enforce 80 char lines
-set completeopt-=preview                " don't show preview window
+set backspace=indent,eol,start          " delete autoindent, newlines, etc.
 set copyindent                          " copy previous auto indent
-set cursorline                          " show a cursor line
 set encoding=utf-8                      " set file encoding
 set expandtab                           " use spaces when <tab> is pressed
-set foldmethod=marker                   " enable folding
 set hidden                              " hide (not close) buffers
 set history=1000                        " remember more history
 set hlsearch                            " highlight found search terms
 set ignorecase                          " ignore case when searching
 set incsearch                           " show matches while typing
-set laststatus=2                        " enable status line
-set lazyredraw                          " only redraw when required
-set list                                " show special characters
-set listchars=tab:..                    " show tab character as .. when used
-set mouse=                              " disable mouse mode
-set nobackup                            " do not save backup files
-set noerrorbells                        " no beeping
-set noswapfile                          " do not create swap files
-set nowrap                              " do not wrap lines
-set number relativenumber               " set number hybrid mode
-set rtp+=/usr/local/opt/fzf             " enable fzf
 set shiftround                          " indent by mulitible of shiftwidth
 set shiftwidth=4                        " size of the indent is x spaces
-set showcmd                             " show info about the current command
-set showmatch                           " show matching parenthesis
-set showmode                            " show current mode
-set sidescroll=1
 set smartcase                           " ignore case when lowercase
 set smarttab                            " tabs are only used for indentation
 set softtabstop=4                       " simulate tabstop width != tabstop
-set tags+=./tags                        " add path for tag files
 set tabstop=4                           " a <tab> is equvalent to x spaces
 set termguicolors                       " support millions of colors
-set ttyfast                             " scroll fast in terminal
+set undofile                            " keep undo history across restarts
 set undolevels=1000                     " increase undo history
-set visualbell t_vb=                    " no flashing
+set wildmenu                            " better command completion
+set wildmode=longest:full,full          " better command completion
 
-" vim-only settings
-if !has('nvim')
-  set pastetoggle=<F2>                  " toggle :set paste on
+if !exists('g:vscode')
+  set background=dark                     " set solarized scheme
+  set colorcolumn=81                      " show line to enforce 81 char lines
+  set completeopt-=preview                " don't show preview window
+  set cursorline                          " show a cursor line
+  set foldmethod=marker                   " enable folding
+  set laststatus=2                        " enable status line
+  set lazyredraw                          " only redraw when required
+  set list                                " show special characters
+  set listchars=tab:..                    " show tab character as .. when used
+  set mouse=                              " disable mouse mode
+  set nobackup                            " do not save backup files
+  set noerrorbells                        " no beeping
+  set noswapfile                          " do not create swap files
+  set nowrap                              " do not wrap lines
+  set number relativenumber               " set number hybrid mode
+  set rtp+=/usr/local/opt/fzf             " enable fzf
+  set scrolloff=5                         " cursor never hugs the screen edge
+  set showcmd                             " show info about the current command
+  set showmatch                           " show matching parenthesis
+  set showmode                            " show current mode
+  set sidescroll=1                        " scroll horizontally by one column
+  set sidescrolloff=5                     " cursor never hugs the screen edge
+  set signcolumn=yes                      " always show sign column
+  set tags+=./tags                        " add path for tag files
+  set ttyfast                             " scroll fast in terminal
+  set visualbell t_vb=                    " no flashing
 endif
 
 " }}} Options
 " Colors {{{
 
-hi FloatermBorder guifg=cyan
-hi GitGutterAdd guifg=green
-hi GitGutterChange guifg=yellow
-hi GitGutterDelete guifg=red
-hi IncSearch guibg=#FBF719
-hi Search guibg=#FBF719
-hi Sneak guifg=white guibg=red
+if !exists('g:vscode')
+  hi FloatermBorder guifg=cyan
+  hi GitGutterAdd guifg=green
+  hi GitGutterChange guifg=yellow
+  hi GitGutterDelete guifg=red
+  hi IncSearch guibg=#FBF719
+  hi Search guibg=#FBF719
+  hi Sneak guifg=white guibg=red
+endif
 
 " }}} Colors
 " Leaders {{{
@@ -104,46 +112,36 @@ nnoremap <leader>y "*y"
 nnoremap <leader>z :wq!<cr>
 nnoremap <leader><space> :nohlsearch<cr>
 
-" Coc
-nnoremap <leader>cd <Plug>(coc-definition)
-nnoremap <leader>cr <Plug>(coc-references)
-nnoremap <leader>cy :<C-u>CocList -A --normal yank<cr>
+if !exists('g:vscode')
+  " Coc
+  nnoremap <leader>cd <Plug>(coc-definition)
+  nnoremap <leader>cr <Plug>(coc-references)
 
-" Vimspector
-nnoremap <leader>db <Plug>VimspectorBreakpoints
-nnoremap <leader>dl <Plug>VimspectorLaunch
-nnoremap <leader>dr <Plug>VimspectorReset
-nnoremap <leader>dt <Plug>VimspectorToggleBreakpoint
+  " FZF
+  nnoremap <leader>fs :Files<cr>
+  nnoremap <leader>fl :Lines<cr>
+  nnoremap <leader>fc :Commits<cr>
+  nnoremap <leader>fb :BLines<cr>
+  nnoremap <leader>fg :GFiles?<cr>
 
-" FZF
-nnoremap <leader>fs :Files<cr>
-nnoremap <leader>fl :Lines<cr>
-nnoremap <leader>fc :Commits<cr>
-nnoremap <leader>fb :BLines<cr>
-nnoremap <leader>fg :GFiles?<cr>
+  " Fugitive
+  nnoremap <leader>g? :map <leader>g<cr>
+  nnoremap <leader>ga :Gwrite<cr>
+  nnoremap <leader>gb :G blame<cr>
+  nnoremap <leader>gc :G commit<cr>
+  nnoremap <leader>gd :G diff<cr>
+  nnoremap <leader>go :Gread<cr>
+  nnoremap <leader>gs :G status<cr>
+  nnoremap <leader>gw :GBrowse<cr>
+  vnoremap <leader>gw :GBrowse<cr>
 
-" Fugitive
-nnoremap <leader>g? :map <leader>g<cr>
-nnoremap <leader>ga :Gwrite<cr>
-nnoremap <leader>gb :G blame<cr>
-nnoremap <leader>gc :G commit<cr>
-nnoremap <leader>gd :G diff<cr>
-nnoremap <leader>gg :Ggrep
-nnoremap <leader>go :Gread<cr>
-nnoremap <leader>gs :G status<cr>
-nnoremap <leader>gw :GBrowse<cr>
-vnoremap <leader>gw :GBrowse<cr>
-nnoremap <leader>gx :Gdelete<cr>
-
-" GitGutter
-nnoremap <leader>h? :map <leader>h<cr>
-nnoremap <leader>ha :GitGutterStageHunk<cr>
-nnoremap <leader>hn :GitGutterNextHunk<cr>
-nnoremap <leader>hp :GitGutterPrevHunk<cr>
-nnoremap <leader>hu :GitGutterUndoHunk<cr>
-
-" Floaterm
-nnoremap <leader>py :FloatermNew ipython<cr>
+  " GitGutter
+  nnoremap <leader>h? :map <leader>h<cr>
+  nnoremap <leader>ha :GitGutterStageHunk<cr>
+  nnoremap <leader>hn :GitGutterNextHunk<cr>
+  nnoremap <leader>hp :GitGutterPrevHunk<cr>
+  nnoremap <leader>hu :GitGutterUndoHunk<cr>
+endif
 
 " Vim window splits
 nnoremap <leader><bar> <c-w>v
@@ -151,12 +149,6 @@ nnoremap <leader>- <c-w>s
 noremap <leader>c <c-w>w
 nnoremap <leader>m <c-w>_<c-w><bar>
 nnoremap <leader>= <c-w>=
-
-" Vim location window
-nnoremap <leader>lc :lclose<cr>
-nnoremap <leader>ln :lnext<cr>
-nnoremap <leader>lo :lopen<cr>
-nnoremap <leader>lp :lprevious<cr>
 
 " }}} Leaders
 " Remap Keys {{{
@@ -203,60 +195,82 @@ cmap w!! w !sudo tee % >/dev/null
 noremap <tab> %
 
 " use the enter key for coc autocompletion
-inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+if !exists('g:vscode')
+  inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+endif
+
+" toggle :set paste on for vim only
+if !has('nvim') && !exists('g:vscode')
+  nnoremap <F2> :if &paste \| set nopaste \| echo "paste: OFF" \| else \| set paste \| echo "paste: ON" \| endif<CR>
+endif
+
+" toggle: set mouse for window select
+if !exists('g:vscode')
+  nnoremap <F3> :if &mouse ==# '' \| set mouse=n \| echo "mouse: NORMAL" \| else \| set mouse= \| echo "mouse: OFF" \| endif<CR>
+endif
 
 " }}} Remap Keys
 " Plugins {{{
 
-" Ale
-let g:ale_fixers = {'python': ['black', 'isort']}
-" let g:ale_fixers = {}
-let g:ale_fix_on_save=1
-let g:ale_linters = {
-    \ 'dockerfile': ['hadolint'],
-    \ 'python': ['flake8'], 'yaml': ['yamllint']
-    \ }
-let g:ale_linters_explicit=1
-let g:ale_virtualtext_cursor=0
+if !exists('g:vscode')
 
-" Bufferline
-let g:bufferline_echo=0
+  " Ale
+  let g:ale_fixers = {'python': ['black', 'isort']}
+  let g:ale_fix_on_save=1
+  let g:ale_linters = {
+      \ 'dockerfile': ['hadolint'],
+      \ 'python': ['flake8'], 'yaml': ['yamllint']
+      \ }
+  let g:ale_linters_explicit=1
+  let g:ale_virtualtext_cursor=0
 
-" Coc
-let g:coc_global_extensions = [
-    \ 'coc-docker',
-    \ 'coc-json',
-    \ 'coc-pyright',
-    \ 'coc-sh',
-    \ 'coc-snippets',
-    \ 'coc-yank',
-    \ ]
+  " Bufferline
+  let g:bufferline_echo=0
 
-" Floaterm
-let g:floaterm_keymap_new='<F7>'
-let g:floaterm_keymap_prev='<F8>'
-let g:floaterm_keymap_next='<F9>'
-let g:floaterm_keymap_toggle='<F12>'
-let g:floaterm_title='($1|$2)'
+  " Coc
+  let g:coc_global_extensions = [
+      \ 'coc-docker',
+      \ 'coc-json',
+      \ 'coc-pyright',
+      \ 'coc-sh',
+      \ 'coc-snippets',
+      \ 'coc-yank',
+      \ ]
 
-" FZF
-let g:fzf_layout = {'down': '~25%'}
-let g:fzf_preview_window = ['right:hidden', 'ctrl-/']
-let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+  " Floaterm
+  let g:floaterm_keymap_new='<F7>'
+  let g:floaterm_keymap_prev='<F8>'
+  let g:floaterm_keymap_next='<F9>'
+  let g:floaterm_keymap_toggle='<F12>'
+  let g:floaterm_title='($1|$2)'
 
-" Fugitive
-let g:gitgutter_map_keys=0
+  " FZF
+  let g:fzf_layout = {'down': '~25%'}
+  let g:fzf_preview_window = ['right:hidden', 'ctrl-/']
+  let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 
-" Lexima
-let g:lexima_enable_newline_rules=0
-let g:lexima_enable_endwise_rules=0
+  " GitGutter
+  let g:gitgutter_map_keys=0
 
-" Lightline
-let g:lightline = {'colorscheme': 'solarized'}
+  " Lightline
+  let g:lightline = {'colorscheme': 'solarized'}
 
-" Solarized
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  " Solarized
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+  " UltiSnips
+  let g:UltiSnipsSnippetDirectories=["ultisnips-snippets"]
+  let g:ultisnips_python_style="sphinx"
+  let g:UltiSnipsExpandTrigger="<tab>"
+  let g:UltiSnipsJumpForwardTrigger="<tab>"
+  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+  " Lexima
+  let g:lexima_enable_newline_rules=0
+  let g:lexima_enable_endwise_rules=0
+
+endif
 
 " Ripgrep
 let $RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
@@ -265,23 +279,18 @@ let $RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-ca
 let g:sneak#s_next=1
 let g:sneak#label=1
 
-" UltiSnips
-let g:UltiSnipsSnippetDirectories=["ultisnips-snippets"]
-let g:ultisnips_python_style="sphinx"
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" Vimspector
-let g:vimspector_install_gadgets = ['debugpy']
-
 " }}} Plugins
 " Auto Commands {{{
 
 if has("autocmd")
+  " Jinja2 templates
   au BufNewFile,BufRead *.jinja2 setfiletype html
-  au bufwritepost .vimrc source $MYVIMRC
-  au filetype netrw call Netrw_Maps_For_Colemak()
+  " Reload config on save
+  au BufWritePost $MYVIMRC source $MYVIMRC
+  " netrw keymaps (terminal Vim/Neovim only)
+  if !exists('g:vscode')
+    au FileType netrw call Netrw_Maps_For_Colemak()
+  endif
 endif
 
 " }}} Auto Commands
