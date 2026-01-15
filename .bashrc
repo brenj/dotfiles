@@ -37,7 +37,8 @@ fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/tools:$PATH"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/scripts:$PATH"
+
 
 # ---- Aliases ----
 if [[ -f ~/.bash_aliases ]]; then
