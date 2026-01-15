@@ -26,6 +26,7 @@ alias vs="fzf -q '!.pyc src/ ' |xargs -o nvim"
 # 3 character
 alias cat='bat -p --paging=never'
 alias rip='rg --column --line-number --no-heading --color=always --smart-case '
+alias venv='source .venv/bin/activate'
 
 # 4 character
 alias fzfp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
