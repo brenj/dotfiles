@@ -4,6 +4,7 @@
 # 1 character
 alias h='history'
 alias l='ls -lhA'
+alias v='code -r'
 
 # 2 character
 alias ..='cd ..'
