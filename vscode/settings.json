@@ -3,8 +3,11 @@
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
+
   "files.autoSave": "afterDelay",
   "files.encoding": "utf8",
+  "files.insertFinalNewline": true,
+
   "vscode-neovim.neovimInitVimPaths.darwin": "/Users/brenj/dotfiles/.vim/init.vim",
 
   "editor.lineNumbers": "relative",
@@ -21,20 +24,49 @@
   "editor.cursorSurroundingLinesStyle": "all",
   "editor.cursorSurroundingLinesStyleHorizontal": "all",
 
-  "editor.renderWhitespace": "all",
+  "editor.renderWhitespace": "none",
   "editor.renderControlCharacters": true,
   "editor.matchBrackets": "always",
 
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#839496"
   },
+
   "editor.selectionHighlight": false,
   "editor.guides.indentation": false,
+  "editor.occurrencesHighlight": "off",
+
   "telemetry.telemetryLevel": "off",
 
   "editor.minimap.enabled": false,
   "editor.scrollbar.vertical": "hidden",
-"editor.scrollbar.horizontal": "hidden",
-"workbench.editor.revealIfOpen": true,
-"workbench.editor.enablePreview": false
+  "editor.scrollbar.horizontal": "hidden",
+
+  "workbench.editor.revealIfOpen": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.focusRecentEditorAfterClose": true,
+
+  "workbench.list.openMode": "singleClick",
+
+  "editor.fontSize": 13,
+  "chat.viewSessions.orientation": "stacked",
+
+  "editor.folding": false,
+  "breadcrumbs.enabled": false,
+
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "python.languageServer": "Pylance",
+  "python.interpreter.infoVisibility": "always",
+
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.ruff": "explicit",
+        "source.organizeImports.ruff": "explicit"
+    }
+  }
 }
+
