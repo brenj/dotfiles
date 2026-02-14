@@ -80,3 +80,12 @@ if command -v pyenv >/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
+
+# ---- History ----
+export HISTFILE="$HOME/.bash_history"
+export HISTSIZE=100000
+export HISTFILESIZE=200000
+shopt -s histappend
+export HISTCONTROL=ignoredups:erasedups:ignorespace
+export HISTIGNORE="ls:ll:la:pwd:cd:cd -:history:exit:clear:gs:fg:gd"
+PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"

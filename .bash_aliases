@@ -20,6 +20,7 @@ alias gs='git status'
 alias gu='git reset --soft HEAD~1'
 alias gz='git branch |fzf |xargs git checkout'
 alias ls='ls -lGHh'
+alias nv='nvim'
 alias pb='pbcopy'
 alias vf="fzf -q '!.pyc ' |xargs -o nvim"
 alias vs="fzf -q '!.pyc src/ ' |xargs -o nvim"
