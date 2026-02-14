@@ -57,6 +57,8 @@ if !exists('g:vscode')
   set colorcolumn=81                      " show line to enforce 81 char lines
   set completeopt-=preview                " don't show preview window
   set cursorline                          " show a cursor line
+  set endofline                           " files should end with a newline character
+  set fixendofline                        " automatically add missing newline
   set foldmethod=marker                   " enable folding
   set laststatus=2                        " enable status line
   set lazyredraw                          " only redraw when required
@@ -224,15 +226,13 @@ endif
 
 if !exists('g:vscode')
 
-  " Ale
-  let g:ale_fixers = {'python': ['black', 'isort']}
-  let g:ale_fix_on_save=1
-  let g:ale_linters = {
-      \ 'dockerfile': ['hadolint'],
-      \ 'python': ['flake8'], 'yaml': ['yamllint']
-      \ }
-  let g:ale_linters_explicit=1
-  let g:ale_virtualtext_cursor=0
+  let g:ale_fix_on_save = 1
+  let g:ale_linters_explicit = 1
+  let g:ale_python_auto_virtualenv = 1
+  let g:ale_linters = {'python': ['ruff']}
+  let g:ale_fixers  = {'python': ['isort', 'black']}
+  let g:ale_python_black_change_directory = 0
+  let g:ale_python_ruff_change_directory = 0
 
   " Bufferline
   let g:bufferline_echo=0
