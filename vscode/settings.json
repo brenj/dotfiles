@@ -41,12 +41,11 @@
   "editor.minimap.enabled": false,
   "editor.scrollbar.vertical": "hidden",
   "editor.scrollbar.horizontal": "hidden",
-
-  "workbench.activityBar.visible": false,
   "workbench.editor.revealIfOpen": true,
   "workbench.editor.enablePreview": false,
   "workbench.editor.showTabs": "multiple",
   "workbench.editor.focusRecentEditorAfterClose": true,
+  "workbench.activityBar.location": "hidden",
 
   "workbench.list.openMode": "doubleClick",
 
