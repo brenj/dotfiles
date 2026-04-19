@@ -4,11 +4,8 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
-" pyenv root
-let $PYENV_ROOT = expand('~/.pyenv')
-
 " Python host
-let g:python3_host_prog = expand('~/.pyenv/versions/3.10.10/bin/python3')
+let g:python3_host_prog = "/opt/homebrew/bin/python3"
 
 " Silence unused providers
 let g:loaded_perl_provider = 0

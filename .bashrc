@@ -37,13 +37,14 @@ if [[ -f ~/.bash_aliases ]]; then
   . ~/.bash_aliases
 fi
 
-# ---- Completions ----
-if [[ ${BASH_VERSINFO[0]} -ge 4 ]] && [[ -r "$BREW_PREFIX/etc/bash_completion" ]]; then
-  . "$BREW_PREFIX/etc/bash_completion"
+# ---- Bash completion ----
+if [[ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]]; then
+  . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
 fi
 
-if [[ -r ~/.fzf.bash ]]; then
-  source ~/.fzf.bash
+# ---- fzf ----
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --bash)"
 fi
 
 # ---- Tools ----
@@ -71,3 +72,7 @@ if command -v pyenv >/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

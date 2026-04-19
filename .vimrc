@@ -24,7 +24,7 @@ endif
 call plug#end()
 
 if !exists('g:vscode')
-  colorscheme solarized8
+  silent! colorscheme solarized8
 endif
 
 " }}} Setup
@@ -293,14 +293,18 @@ let g:sneak#label=1
 " Auto Commands {{{
 
 if has("autocmd")
-  " Jinja2 templates
-  au BufNewFile,BufRead *.jinja2 setfiletype html
-  " Reload config on save
-  au BufWritePost $MYVIMRC source $MYVIMRC
-  " netrw keymaps (terminal Vim/Neovim only)
-  if !exists('g:vscode')
-    au FileType netrw call Netrw_Maps_For_Colemak()
-  endif
+  augroup my_autocmds
+    autocmd!
+    " Jinja2 templates
+    autocmd BufNewFile,BufRead *.jinja2 setfiletype html
+    " Reload config on save
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    " Fix paste behavior
+    autocmd FileType * setlocal formatoptions-=cro
+    if !exists('g:vscode')
+      autocmd FileType netrw call Netrw_Maps_For_Colemak()
+    endif
+  augroup END
 endif
 
 " }}} Auto Commands

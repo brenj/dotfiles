@@ -7,5 +7,6 @@
     "pyright.testing.provider": "pytest",
     "python.analysis.typeCheckingMode": "off",
     "python.linting.enabled": false,
-    "python.pythonPath": "/Users/brenj/.pyenv/versions/3.10.10/bin/python3"
+    "python.pythonPath": "/opt/homebrew/bin/python3",
+    "inlayHint.enable": false
 }
