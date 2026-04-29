@@ -70,7 +70,7 @@ if !exists('g:vscode')
   set noswapfile                          " do not create swap files
   set nowrap                              " do not wrap lines
   set number relativenumber               " set number hybrid mode
-  set rtp+=/usr/local/opt/fzf             " enable fzf
+  set rtp+=/opt/homebrew/opt/fzf          " enable fzf
   set scrolloff=5                         " cursor never hugs the screen edge
   set showcmd                             " show info about the current command
   set showmatch                           " show matching parenthesis
